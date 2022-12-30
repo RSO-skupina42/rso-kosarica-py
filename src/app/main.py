@@ -19,4 +19,4 @@ async def shutdown():
 
 
 app.include_router(ping.router)
-app.include_router(kosarica.router, prefix="/kosarica", tags=["kosarice"])
+app.include_router(kosarica.router, prefix="/kosarice", tags=["kosarice"])

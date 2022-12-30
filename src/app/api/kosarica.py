@@ -51,7 +51,7 @@ async def posodobi_kosarico(payload: KosaricaSchema, id: int = Path(..., gt=0),)
 
 
 @router.delete("/kosarice/{id}/", response_model=KosaricaDB)
-async def delete_note(id: int = Path(..., gt=0)):
+async def delete_kosarica(id: int = Path(..., gt=0)):
     kosarica = await crud.get(id)
     if not kosarica:
         raise HTTPException(status_code=404, detail="Kosarica ni bila najdena.")
