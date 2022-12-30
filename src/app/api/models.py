@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from typing import List
 from uuid import uuid4
 
 #class za kosarico iz prejsne MS ima kosarica naslednje atribute
@@ -45,29 +46,27 @@ from uuid import uuid4
 '''
 
 #for testing purposes
-'''
-Nevem a bom mogu to uporabt al kako
+
+#Nevem a bom mogu to uporabt al kako
 class Izdelek(BaseModel): 
     #class za izdelek, kle bi lahko uporabu dict 
     # ampak nevem kako jih pol gnezdt
     izdlek_ime: str = Field(...)
     izdelek_cena: float = Field(...)
 
-class trgovina(BaseModel):
+class Trgovina(BaseModel):
     imeTrgovine: str = Field(..., min_length=3, max_length=50)
-    izdelki: list = Field(...)
-
-'''
-
+    #izdelki: List[Izdelek] = Field(...)
+    izdelki: str = Field(..., min_length=3, max_length=50)
 
 class KosaricaSchema(BaseModel):
     imeKosarice: str = Field(..., min_length=3, max_length=50)
     #not sure če je to sploh prov
-    #seznamTrgovin: dict[str, dict[str, float]] = Field(...) 
+    #seznamTrgovin: List[Trgovina] = Field(...) 
     
     # za testiranje naj bo seznam samo nek string
-    imeKosarice: str = Field(..., min_length=3, max_length=50)
+    seznamTrgovin: list[Trgovina] = Field(...)
 
 #ta podedjue vse od gor pa doda ID ???
-class kosaricaDB(KosaricaSchema):
+class KosaricaDB(KosaricaSchema):
     id: int

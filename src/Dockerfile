@@ -22,3 +22,5 @@ RUN set -eux \
 
 # copy project
 COPY . /usr/src/app/
+
+EXPOSE 8455

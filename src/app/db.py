@@ -7,8 +7,10 @@ from sqlalchemy import (
     MetaData,
     String,
     Table,
+    ARRAY,
     create_engine
 )
+
 from sqlalchemy.sql import func
 
 from databases import Database
@@ -23,9 +25,11 @@ kosarice = Table(
     metadata,
     Column("id", Integer, primary_key=True),
     Column("imeKosarice", String(50)),
+    #tuki more met nekak seznam ne string za seznamtrgovin
     Column("seznamTrgovin", String(50)),
     Column("created_date", DateTime, default=func.now(), nullable=False),
 )
+
 
 # databases query builder
 database = Database(DATABASE_URL)
