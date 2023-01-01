@@ -32,19 +32,3 @@ class Izdelek(Base):
     kosarica_id = Column(Integer, ForeignKey('kosarica.id'))
     kosarica = relationship("Kosarica", back_populates="izdelki")
     
-
-
-
-'''
-class Trgovina(Base):
-    __tablename__ = "trgovina"
-
-    id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid4)
-    imeTrgovine = Column(String(20))
-
-    #relacije/atributi drugje
-    izdelki = relationship("Izdelek", back_populates="trgovina")
-
-    #Za to nism zihr če more met? 
-    kosarica = relationship("Kosarica", back_populates="trgovine")
-'''

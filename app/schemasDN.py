@@ -52,33 +52,3 @@ class KosaricaUpdate(KosaricaBase):
     class Config:
         orm_mode = True
 
-
-
-
-'''#Shema za trgovine 
-
-#base class
-class TrgovinaBase(BaseModel):
-    imeTrgovine: str 
-
-#create class
-class TrgovinaCreate(TrgovinaBase):
-    id:int
-    pass
-
-#koncni class?
-class Trgovina(TrgovinaBase):
-    id:int
-    izdelki: List[Izdelek] = []
-
-    class Config:
-        orm_mode = True
-
-#update class
-class TrgovinaUpdate(TrgovinaBase):
-    izdelki: List[Izdelek] = []
-
-    class Config:
-        orm_mode = True
-
-'''

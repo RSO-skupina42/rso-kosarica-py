@@ -5,7 +5,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import psycopg2
 
-#ta je ista kot pri Aljažu not completly sure kako deluje though
 
 hostname = os.getenv("POSTGRES_HOST", "localhost")
 username = os.getenv("POSTGRES_USER", "dbuser")
