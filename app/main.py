@@ -1,14 +1,24 @@
 from typing import List
 
 from fastapi import APIRouter, HTTPException, Path, Depends, FastAPI
-
 from sqlalchemy.orm import Session
 
-import crudDN, modelsDN
-import schemasDN
+#za loging
+import sentry_sdk
+from sentry_sdk import set_level
 
+#local import files
+import crudDN, modelsDN, schemasDN
 
 from databaseDN import SessionLocal, engine
+
+# enable logging
+sentry_sdk.init(
+    dsn="https://60d860690425432bb80de5af728ffe3b@o4504418811641857.ingest.sentry.io/4504418813280256",
+    traces_sample_rate=1.0,
+    debug=True,
+)
+set_level("info")
 
 
 app = FastAPI()
@@ -25,13 +35,13 @@ def get_db():
 
 
 #dobi vse košarices
-@app.get("/", response_model=List[schemasDN.Kosarica])
+@app.get("/kosarice", response_model=List[schemasDN.Kosarica])
 async def read_all_kosarice(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return crudDN.get_all_kosarice(db, skip=skip, limit=limit)
 
 
 #ustavri novo košarico
-@app.post("/", response_model=schemasDN.Kosarica)
+@app.post("/kosarice/", response_model=schemasDN.Kosarica)
 async def create_kosarica(kosarica: schemasDN.KosaricaCreate, db: Session = Depends(get_db)):
     db_kosarica = crudDN.get_kosarica(db, imeKosarice=kosarica.imeKosarice)
     #print(db_kosarica.imeKosarice)
@@ -41,7 +51,7 @@ async def create_kosarica(kosarica: schemasDN.KosaricaCreate, db: Session = Depe
 
 
 #za testiranje 
-@app.get("/{id}")
+@app.get("/kosarice/{id}")
 async def get_kosarica(id: int):
     return f"This is the id that was sent through {id}."
 
