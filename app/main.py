@@ -7,6 +7,9 @@ from sqlalchemy.orm import Session
 import sentry_sdk
 from sentry_sdk import set_level
 
+#za metrike
+from prometheus_fastapi_instrumentator import Instrumentator
+
 #local import files
 import crudDN, modelsDN, schemasDN
 
@@ -22,6 +25,11 @@ set_level("info")
 
 
 app = FastAPI()
+
+
+@app.on_event("startup")
+async def startup():
+    Instrumentator().instrument(app).expose(app)
 
 modelsDN.Base.metadata.create_all(bind=engine)
 

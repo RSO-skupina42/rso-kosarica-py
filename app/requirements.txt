@@ -8,6 +8,9 @@ uvicorn==0.20.0
 #loging 
 sentry-sdk[fastapi]==1.12.1
 
+#metrike
+prometheus-fastapi-instrumentator==5.9.1
+
 # dev
 pytest==7.2.0
 httpx==0.23.1
