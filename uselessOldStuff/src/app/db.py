@@ -36,7 +36,7 @@ kosarice = Table(
     Column("imeKosarice", String(50)),
 
     #tuki more met nekak seznam ne string za seznamtrgovin
-    Column("seznamTrgovin", String(50)),
+    Column("Seznam izdelkov", String(50)),
     Column("created_date", DateTime, default=func.now(), nullable=False),
 )
 
