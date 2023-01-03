@@ -39,4 +39,4 @@ jobs:
         with:
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/kosarice_rso_py:${{ steps.current-time.outputs.formattedTime }} , ${{ secrets.DOCKERHUB_USERNAME }}/rso_kosarice_py:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/rso_kosarice_py:${{ steps.current-time.outputs.formattedTime }} , ${{ secrets.DOCKERHUB_USERNAME }}/rso_kosarice_py:latest

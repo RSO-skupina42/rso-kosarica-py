@@ -13,7 +13,7 @@ spec:
         app: fa-kosarice
     spec:
       containers:
-        - image: amihevc/rso_kosarica_py
+        - image: amihevc/rso_kosarice_py
           name: fa-kosarice
           env:
             - name: POSTGRES_USER
