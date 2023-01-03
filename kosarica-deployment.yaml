@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-kosarice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fa-kosarice
+  template:
+    metadata:
+      labels:
+        app: fa-kosarice
+    spec:
+      containers:
+        - image: amihevc/rso_kosarica_py
+          name: fa-kosarice
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials-users
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials-users
+                  key: password
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials-users
+                  key: database
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials-users
+                  key: hostname
+          ports:
+            - containerPort: 8003
+              name: server
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 3
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fa-kosarice
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8003
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: fa-kosarice
