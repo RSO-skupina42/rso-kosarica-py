@@ -4,9 +4,13 @@ from app import modelsDN
 
 from app import schemasDN
 
-#get za kosarico z idjem
+#get za kosarico z imenom
 def get_kosarica(db: Session, imeKosarice: str):
     return db.query(modelsDN.Kosarica).filter(modelsDN.Kosarica.imeKosarice == imeKosarice).first()
+
+#get za kosarico z id-jem
+def get_kosarica_by_id(db: Session, id_kosarice: int):
+    return db.query(modelsDN.Kosarica).filter(modelsDN.Kosarica.id == id_kosarice).first()
 
 #get za vse kosarice
 def get_all_kosarice(db: Session, skip: int = 0, limit: int = 100):
