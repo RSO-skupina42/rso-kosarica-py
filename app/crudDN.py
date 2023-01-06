@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
-import modelsDN
+from app import modelsDN
 
-import schemasDN
+from app import schemasDN
 
 #get za kosarico z idjem
 def get_kosarica(db: Session, imeKosarice: str):

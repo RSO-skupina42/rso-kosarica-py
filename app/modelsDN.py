@@ -4,7 +4,7 @@ from sqlalchemy import Column, String, Float, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
 
-from databaseDN import Base
+from .databaseDN import Base
 
 
 class Kosarica(Base):
