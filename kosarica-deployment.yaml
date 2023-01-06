@@ -19,22 +19,22 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: db-credentials-users
+                  name: db-kosarica-pass
                   key: username
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: db-credentials-users
+                  name: db-kosarica-pass
                   key: password
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: db-credentials-users
+                  name: db-kosarica-pass
                   key: database
             - name: POSTGRES_HOST
               valueFrom:
                 secretKeyRef:
-                  name: db-credentials-users
+                  name: db-kosarica-pass
                   key: hostname
           ports:
             - containerPort: 8003
