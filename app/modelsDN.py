@@ -23,9 +23,9 @@ class Izdelek(Base):
 
     #atributi
     id = Column(Integer, primary_key=True, index=True)
-    imeIzdelka = Column(String(50))
+    imeIzdelka = Column(String)
     cenaIzdelka = Column(Float)
-    trgovnina = Column(String(20))
+    trgovnina = Column(String)
 
     
     #relacije/atributi drugje
