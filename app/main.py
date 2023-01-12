@@ -50,13 +50,13 @@ app = FastAPI(
 
 #------MIDDLEWARE------
 origins = [
-    ""
+    "*"
 ]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=[""],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
@@ -172,9 +172,9 @@ async def create_kosarica(kosarica: schemasDN.KosaricaCreate, db: Session = Depe
 
 
 #za testiranje samo vrača kar dobi
-@app.get("/kosarice/{id}")
-async def get_kosarica(id: int):
-    return f"This is the id that was sent through {id}."
+@app.get("/kosarice/{id}", response_model=schemasDN.Kosarica)
+async def get_kosarica(id: int, db: Session = Depends(get_db)):
+    return crudDN.get_kosarica_by_id(db=db, id_kosarice=id)
 
 
 #košarici s podanim id-jem dodaj nek izdelek
